@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+    
+
+    html, body {
+    width:100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: greenyellow;
+    }
+
+
+
+    .caexenha {
+        position: relative;
+        left: 95vh;
+        top: 50vh;
+    }
+
+    button {
+        width: 10vh;
+        height: 10vh;
+    }
