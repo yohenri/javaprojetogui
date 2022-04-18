@@ -14,6 +14,7 @@
         </p>
         <button class="btn-comeca" id="comecaBtn" onclick="cor(this)" type="submit" >Começar</button>
         <button class="btn-para" id="paraBtn">Parar</button>
+        <button class="btn-reseta" id="resetaBtn">Resetar</button>
     </div>    
     <script>
         var output = document.getElementById('crono');
@@ -36,11 +37,11 @@ function timer() {
     }
 
     //interpolação de string
-    var milli = ms < 10 ? `0`+ ms : ms;
+
     var segunds = seg < 10 ? `0`+ seg : seg;
     var minuto = min < 10 ? `0` + min : min;
 
-    var timer= `${minuto}:${segunds}:${milli}`;
+    var timer= `${minuto}:${segunds}`;
     output.innerHTML =timer;
 };
 //startar
@@ -52,12 +53,26 @@ function para(){
     clearInterval(time)
 }
 
-const comecaBtn = document.getElementById('comecaBtn');
-const paraBtn =  document.getElementById('paraBtn');
+
+//reset timer
+function reset(){   
+    seg = 0;
+    min = 0;
+
+    output.innerHTML = `00:00`
+}
+
+
+
+
+var comecaBtn = document.getElementById('comecaBtn');
+var paraBtn =  document.getElementById('paraBtn');
+var resetBtn = document.getElementById('resetaBtn');
 
 
 comecaBtn.addEventListener('click',comeca,false);
 paraBtn.addEventListener('click',para,false);
+resetBtn.addEventListener('click',reset,false);
 
 
 function cor(_this) {
