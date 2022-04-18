@@ -9,9 +9,61 @@
 </head>
 <body>
     <div class="caexenha">
-    <button>Começar</button>
-    <button>Parar</button>
-    </div>
-    
+        <p class="crono" id="crono">
+            <!-- cronometro -->
+        </p>
+        <button class="btn-comeca" id="comecaBtn" onclick="cor(this)" type="submit" >Começar</button>
+        <button class="btn-para" id="paraBtn">Parar</button>
+    </div>    
+    <script>
+        var output = document.getElementById('crono');
+var ms = 0;
+var seg = 0;
+var min = 0;
+
+function timer() {
+    ms++;
+    if(ms >= 100){
+        seg++
+        ms = 0
+    }
+    if(seg === 60){
+        min++
+        seg = 0
+    }
+    if(min === 60){
+        ms, seg, min = 0;
+    }
+
+    //interpolação de string
+    var milli = ms < 10 ? `0`+ ms : ms;
+    var segunds = seg < 10 ? `0`+ seg : seg;
+    var minuto = min < 10 ? `0` + min : min;
+
+    var timer= `${minuto}:${segunds}:${milli}`;
+    output.innerHTML =timer;
+};
+//startar
+function comeca(){
+ time = setInterval(timer,10);
+}
+//parar
+function para(){
+    clearInterval(time)
+}
+
+const comecaBtn = document.getElementById('comecaBtn');
+const paraBtn =  document.getElementById('paraBtn');
+
+
+comecaBtn.addEventListener('click',comeca,false);
+paraBtn.addEventListener('click',para,false);
+
+
+function cor(_this) {
+  _this.style.backgroundColor = "pink";
+}
+
+    </script>
 </body>
 </html>

@@ -10,17 +10,19 @@
     height: 100%;
     overflow: hidden;
     background-color: greenyellow;
+    font-size: 50px;
     }
 
 
 
     .caexenha {
         position: relative;
-        left: 95vh;
-        top: 50vh;
+        left: 90vh;
+        top: 30vh;
     }
 
     button {
+        margin: 10px;
         width: 10vh;
         height: 10vh;
     }
