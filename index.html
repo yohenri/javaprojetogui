@@ -8,75 +8,116 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="caexenha">
-        <p class="crono" id="crono">
-            <!-- cronometro -->
-        </p>
-        <button class="btn-comeca" id="comecaBtn" onclick="cor(this)" type="submit" >Começar</button>
-        <button class="btn-para" id="paraBtn">Parar</button>
-        <button class="btn-reseta" id="resetaBtn">Resetar</button>
-    </div>    
+    <div id="caexenha"> 
+    <h1>
+        <span id="min">00</span> :
+        <span id="sec">00</span> 
+        
+      </h1>
+      
+      <button onclick="comecaPara()" id="comeca">começar</button>
+      <button onclick="reset()">Resetar</button>
+    </div>
     <script>
-        var output = document.getElementById('crono');
-var ms = 0;
-var seg = 0;
+      var x;
+var comecapara = 0;
+
+function comecaPara() { /* Toggle StartStop */
+
+  comecapara = comecapara + 1;
+
+  if (comecapara === 1) {
+    comeca();
+    document.getElementById("comeca").innerHTML = "para";
+  } else if (comecapara === 2) {
+    document.getElementById("comeca").innerHTML = "comeca";
+    comecapara = 0;
+    para();
+  }
+
+}
+
+
+function comeca() {
+  x = setInterval(timer, 10);
+} /* comecar */
+
+function para() {
+  clearInterval(x);
+} /* parar */
+
+var milisec = 0;
+var sec = 0; /* incrementação */
 var min = 0;
+var hour = 0;
+
+
+
+
+var secOut = 0;
+var minOut = 0;
+
+
+/* Output variable End */
+
 
 function timer() {
-    ms++;
-    if(ms >= 100){
-        seg++
-        ms = 0
-    }
-    if(seg === 60){
-        min++
-        seg = 0
-    }
-    if(min === 60){
-        ms, seg, min = 0;
-    }
-
-    //interpolação de string
-
-    var segunds = seg < 10 ? `0`+ seg : seg;
-    var minuto = min < 10 ? `0` + min : min;
-
-    var timer= `${minuto}:${segunds}`;
-    output.innerHTML =timer;
-};
-//startar
-function comeca(){
- time = setInterval(timer,10);
-}
-//parar
-function para(){
-    clearInterval(time)
-}
+  /* Timer */
 
 
-//reset timer
-function reset(){   
-    seg = 0;
-    min = 0;
+  
+  secOut = checkTime(sec);
+  minOut = checkTime(min);
+  
 
-    output.innerHTML = `00:00`
+  milisec = ++milisec;
+
+  if (milisec === 100) {
+    milisec = 0;
+    sec = ++sec;
+  }
+
+  if (sec == 60) {
+    min = ++min;
+    sec = 0;
+  }
+
+ 
+
+
+  
+  document.getElementById("sec").innerHTML = secOut;
+  document.getElementById("min").innerHTML = minOut;
+  
+
 }
 
 
+/* incrementa quando é <10 */
 
 
-var comecaBtn = document.getElementById('comecaBtn');
-var paraBtn =  document.getElementById('paraBtn');
-var resetBtn = document.getElementById('resetaBtn');
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+function reset() {
 
 
-comecaBtn.addEventListener('click',comeca,false);
-paraBtn.addEventListener('click',para,false);
-resetBtn.addEventListener('click',reset,false);
+  /*Reseta*/
 
 
-function cor(_this) {
-  _this.style.backgroundColor = "pink";
+  sec = 0;
+  min = 0
+  
+
+  
+  document.getElementById("sec").innerHTML = "00";
+  document.getElementById("min").innerHTML = "00";
+  
+
 }
 
     </script>
